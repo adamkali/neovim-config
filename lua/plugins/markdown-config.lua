@@ -99,10 +99,16 @@ local obsidian_config = {
 		date_format = "%Y-%m-%d-%a",
 		time_format = "%H:%M",
 		substitutions = {
-			uuid = function ()
+			uuid = function()
 				return os.execute("uuidgen")
 			end
 		}
+
+	},
+	completion = {
+		nvim_cmp = false,
+		blink = true,
+		min_chars = 1,
 	},
 }
 
@@ -118,57 +124,57 @@ obsidian.setup(obsidian_config)
 -- ============================================================================
 
 local function stamp_updated(bufnr)
-  -- Resolve vault path the same way obsidian_config does
-  local vault = vim.loop.os_uname().release:match("WSL")
-    and "/mnt/c/Users/adam/Documents/notes/My_Second_Mind/"
-    or  "/home/adamkali/obsidian/"
+	-- Resolve vault path the same way obsidian_config does
+	local vault = vim.loop.os_uname().release:match("WSL")
+		and "/mnt/c/Users/adam/Documents/notes/My_Second_Mind/"
+		or "/home/adamkali/obsidian/"
 
-  local path = vim.api.nvim_buf_get_name(bufnr)
-  if not path:find(vault, 1, true) then return end
+	local path = vim.api.nvim_buf_get_name(bufnr)
+	if not path:find(vault, 1, true) then return end
 
-  -- Get markdown parser and its injected YAML child
-  local ok_md, md = pcall(vim.treesitter.get_parser, bufnr, "markdown")
-  if not ok_md or not md then return end
-  md:parse()
+	-- Get markdown parser and its injected YAML child
+	local ok_md, md = pcall(vim.treesitter.get_parser, bufnr, "markdown")
+	if not ok_md or not md then return end
+	md:parse()
 
-  local children = md:children()
-  local yp = children and children["yaml"]
-  if not yp then return end
-  yp:parse()
+	local children = md:children()
+	local yp = children and children["yaml"]
+	if not yp then return end
+	yp:parse()
 
-  local yaml_trees = yp:trees()
-  if not yaml_trees or #yaml_trees == 0 then return end
-  local yaml_root = yaml_trees[1]:root()
+	local yaml_trees = yp:trees()
+	if not yaml_trees or #yaml_trees == 0 then return end
+	local yaml_root = yaml_trees[1]:root()
 
-  local stamp = os.date("%Y-%m-%d-%a")
+	local stamp = os.date("%Y-%m-%d-%a")
 
-  -- Query: find an existing `updated:` key-value pair
-  local ok_q, q = pcall(vim.treesitter.query.parse, "yaml", [[
+	-- Query: find an existing `updated:` key-value pair
+	local ok_q, q = pcall(vim.treesitter.query.parse, "yaml", [[
     (block_mapping_pair
       key:   (_) @key
       value: (_) @value
       (#eq? @key "updated"))
   ]])
 
-  if ok_q then
-    for id, node in q:iter_captures(yaml_root, bufnr) do
-      if q.captures[id] == "value" then
-        -- Overwrite the existing value node in-place
-        local r1, c1, r2, c2 = node:range()
-        vim.api.nvim_buf_set_text(bufnr, r1, c1, r2, c2, { stamp })
-        return
-      end
-    end
-  end
+	if ok_q then
+		for id, node in q:iter_captures(yaml_root, bufnr) do
+			if q.captures[id] == "value" then
+				-- Overwrite the existing value node in-place
+				local r1, c1, r2, c2 = node:range()
+				vim.api.nvim_buf_set_text(bufnr, r1, c1, r2, c2, { stamp })
+				return
+			end
+		end
+	end
 
-  -- `updated:` not present — insert a new line before the closing `---`.
-  -- The yaml_root range ends on the last content row; closing `---` is one row below.
-  local _, _, end_row, _ = yaml_root:range()
-  vim.api.nvim_buf_set_lines(bufnr, end_row + 1, end_row + 1, false,
-    { "updated: " .. stamp })
+	-- `updated:` not present — insert a new line before the closing `---`.
+	-- The yaml_root range ends on the last content row; closing `---` is one row below.
+	local _, _, end_row, _ = yaml_root:range()
+	vim.api.nvim_buf_set_lines(bufnr, end_row + 1, end_row + 1, false,
+		{ "updated: " .. stamp })
 end
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern  = "*.md",
-  callback = function(ev) stamp_updated(ev.buf) end,
+	pattern  = "*.md",
+	callback = function(ev) stamp_updated(ev.buf) end,
 })

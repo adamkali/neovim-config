@@ -32,6 +32,10 @@
       "rev": "9004cbb4c065a32b690e909c49903967b45301eb",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
+    "kulala.nvim": {
+      "rev": "6656c9d332735ca6a27725e0fb45a1715c4372d9",
+      "src": "https://github.com/mistweaverco/kulala.nvim"
+    },
     "lazydev.nvim": {
       "rev": "5231c62aa83c2f8dc8e7ba957aa77098cda1257d",
       "src": "https://github.com/folke/lazydev.nvim"
@@ -134,6 +138,10 @@
       "rev": "84d86aa49021aa8b48c0a6ff89cd92c39ddf7d5c",
       "src": "https://github.com/b0o/schemastore.nvim"
     },
+    "sharpie.nvim": {
+      "rev": "de026012cc0b473170aab38541ca26276b68050d",
+      "src": "https://github.com/adamkali/sharpie.nvim"
+    },
     "snacks.nvim": {
       "rev": "fe7cfe9800a182274d0f868a74b7263b8c0c020b",
       "src": "https://github.com/folke/snacks.nvim"
@@ -150,6 +158,10 @@
       "rev": "7486ddad55474c8c69b22f8acd4c1e3ff27c4b27",
       "src": "https://github.com/adamkali/vaporlush",
       "version": "'v2'"
+    },
+    "vs-solution-treesitter": {
+      "rev": "b08b465befe6bf6184ffd52e25e888004218ddbc",
+      "src": "https://github.com/adamkali/vs-solution-treesitter"
     },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",

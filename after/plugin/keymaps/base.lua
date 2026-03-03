@@ -34,5 +34,6 @@ wk {
 	{ "<C-t>",   ":wincmd j <CR>",   desc = '',        expr = false, nowait = false, remap = false, mode = "t" },
 	{ "<C-n>",   ":wincmd k <CR>",   desc = '',        expr = false, nowait = false, remap = false, mode = "t" },
 	{ "<C-s>",   ":wincmd l <CR>",   desc = '',        expr = false, nowait = false, remap = false, mode = "t" },
-	{ "<C-A-r>", "<cmd>restart<CR>", desc = 'Restart', expr = false, nowait = false, remap = false },
+	{ "<C-o>",   ":Oil<CR>",         desc = '',        expr = false, nowait = false, remap = false, mode = "n" },
+	{ "<C-R>", "<cmd>restart<CR>", desc = 'Restart', expr = false, nowait = false, remap = false },
 }

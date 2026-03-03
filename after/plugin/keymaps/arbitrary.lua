@@ -7,7 +7,6 @@ wk {
 }
 
 wk {
-	{ arbitraries_leader .. "o", ":Oil<CR>",                                        desc = 'Oil File Explorer' },
 	{ arbitraries_leader .. "f", arbitraries.ak_get_filename,                       desc = "Insert Filename" },
 	{ arbitraries_leader .. "F", arbitraries.ak_get_fqn_filname,                    desc = "Insert FQN Filename" },
 	{ arbitraries_leader .. "y", arbitraries.ak_yank_filename,                      desc = "Yank Filename" },

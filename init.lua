@@ -21,12 +21,14 @@ vim.pack.add({
 	github_source("nvim-tree/nvim-web-devicons"),                        -- done
 	github_source("nvim-treesitter/nvim-treesitter", { version = "main" }), -- done
 	github_source("nvim-lualine/lualine.nvim"),
+	github_source("adamkali/sharpie.nvim"),
 	-- utils
 	github_source("michaelrommel/nvim-silicon"), -- done
 	github_source("stevearc/overseer.nvim"),    -- done
 	github_source("Exafunction/windsurf.vim"),  -- done
 	github_source("nvim-lua/plenary.nvim"),     -- done
 	github_source("saghen/blink.cmp"),          -- done
+	github_source("mistweaverco/kulala.nvim"),
 	-- snippets
 	github_source("L3MON4D3/LuaSnip"),          -- done
 	github_source("rafamadriz/friendly-snippets"), -- done
@@ -36,6 +38,7 @@ vim.pack.add({
 	github_source("neovim/nvim-lspconfig"),     -- done
 	github_source("mason-org/mason.nvim"),      -- done
 	github_source("Decodetalkers/csharpls-extended-lsp.nvim"),
+	github_source("adamkali/vs-solution-treesitter"),
 	-- fuzzy finders
 	github_source("nvim-telescope/telescope.nvim"),                                        -- done
 	github_source('stevearc/dressing.nvim'),                                               -- done
