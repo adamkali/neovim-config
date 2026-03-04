@@ -11,7 +11,7 @@ require("which-key").add {
 	{ language_leader .."D", vim.lsp.buf.definition,         desc = "Go to definition",          expr = false,   nowait = false, remap = true },
 	{ language_leader .."i", vim.lsp.buf.implementation,     desc = "Go to implementation",      expr = false,   nowait = false, remap = true },
 	{ language_leader .."r", vim.lsp.buf.rename,             desc = "Rename File",               expr = false,   nowait = false, remap = true },
-	{ language_leader .."[", constants.AK_go_to_prev,        desc = "Go to previous diagnostic", expr = false,   nowait = false, remap = true },
-	{ language_leader .."]", constants.AK_go_to_next,        desc = "Go to next diagnostic",     expr = false,   nowait = false, remap = true },
+	{ language_leader .."n", constants.AK_go_to_prev,        desc = "Go to previous diagnostic", expr = false,   nowait = false, remap = true },
+	{ language_leader .."p", constants.AK_go_to_next,        desc = "Go to next diagnostic",     expr = false,   nowait = false, remap = true },
 	{ language_leader .."f", vim.lsp.buf.format,             desc = "Format File",               expr = false,   nowait = false, remap = true },
 }

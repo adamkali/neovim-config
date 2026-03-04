@@ -138,3 +138,4 @@ wk {
   { tab_leader .. "4", "4gt",           desc = "Tab 4",        nowait = false, remap = false },
   { tab_leader .. "5", "5gt",           desc = "Tab 5",        nowait = false, remap = false },
 }
+
